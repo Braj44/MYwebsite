@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop All | VIBE CHECK</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header>
+        <div class="container nav-container">
+            <div class="logo">VIBE CHECK</div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="shop.html" class="active">Shop</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="support.html">Support</a></li>
+                </ul>
+            </nav>
+            <div class="nav-icons">
+                <div class="icon-btn search-btn"><i class="fas fa-search"></i></div>
+                <a href="wishlist.html" class="icon-btn"><i class="far fa-heart"></i></a>
+                <a href="cart.html" class="icon-btn">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="badge cart-count">0</span>
+                </a>
+                <a href="login.html" class="icon-btn"><i class="far fa-user"></i></a>
+                <div class="mobile-menu-btn"><i class="fas fa-bars"></i></div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container shop-container">
+        <!-- Sidebar Filters -->
+        <aside class="shop-sidebar">
+            <div class="filter-group">
+                <h3>Categories</h3>
+                <ul class="filter-list">
+                    <li><input type="checkbox" id="cat-all" checked> <label for="cat-all">All</label></li>
+                    <li><input type="checkbox" id="cat-oversized"> <label for="cat-oversized">Oversized</label></li>
+                    <li><input type="checkbox" id="cat-anime"> <label for="cat-anime">Anime</label></li>
+                    <li><input type="checkbox" id="cat-hiphop"> <label for="cat-hiphop">Streetwear</label></li>
+                    <li><input type="checkbox" id="cat-gaming"> <label for="cat-gaming">Gaming</label></li>
+                    <li><input type="checkbox" id="cat-minimal"> <label for="cat-minimal">Minimal</label></li>
+                </ul>
+            </div>
+
+            <div class="filter-group">
+                <h3>Price Range</h3>
+                <input type="range" min="0" max="100" value="100" class="price-slider" id="price-range">
+                <div class="price-values">
+                    <span>$0</span>
+                    <span id="price-max">$100</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="shop-main">
+            <div class="shop-header">
+                <h1 class="page-title">All Products</h1>
+                <div class="sort-options">
+                    <select id="sort-select">
+                        <option value="default">Sort By: Featured</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="new">Newest Arrivals</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="products-grid" id="shop-products">
+                <!-- Products injected via JS -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>VIBE CHECK</h4>
+                    <p>Redefining streetwear for the new generation. Stay iconic.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Shop</h4>
+                    <ul>
+                        <li><a href="shop.html">All Products</a></li>
+                        <li><a href="shop.html?cat=new">New Arrivals</a></li>
+                        <li><a href="shop.html?cat=best">Best Sellers</a></li>
+                        <li><a href="tracking.html">Track Order</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="support.html">FAQ</a></li>
+                        <li><a href="support.html">Contact Us</a></li>
+                        <li><a href="#">Shipping Policy</a></li>
+                        <li><a href="#">Returns</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 Vibe Check. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/products.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        // Shop Page Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const grid = document.getElementById('shop-products');
+            const priceRange = document.getElementById('price-range');
+            const priceMaxDisplay = document.getElementById('price-max');
+            const sortSelect = document.getElementById('sort-select');
+            const categoryCheckboxes = document.querySelectorAll('.filter-list input');
+
+            let currentProducts = [...products];
+
+            function renderProducts(items) {
+                grid.innerHTML = '';
+                if (items.length === 0) {
+                    grid.innerHTML = '<p>No products found matching your vibe.</p>';
+                    return;
+                }
+
+                items.forEach(product => {
+                    const card = document.createElement('div');
+                    card.className = 'product-card';
+                    card.innerHTML = `
+                        <div class="product-image">
+                            <img src="${product.image}" alt="${product.name}">
+                            ${product.discount > 0 ? `<span class="discount-tag">-${product.discount}%</span>` : ''}
+                            <button class="wishlist-btn" onclick="toggleWishlist(${product.id})"><i class="far fa-heart"></i></button>
+                        </div>
+                        <div class="product-info">
+                            <h3>${product.name}</h3>
+                            <div class="price">
+                                <span class="current-price">$${product.price}</span>
+                                ${product.discount > 0 ? `<span class="old-price">$${(product.price * 1.2).toFixed(2)}</span>` : ''}
+                            </div>
+                            <div class="rating">
+                                ${'★'.repeat(Math.floor(product.rating))}${'☆'.repeat(5 - Math.floor(product.rating))}
+                            </div>
+                            <button class="btn btn-secondary btn-sm" onclick="addToCart(products.find(p => p.id === ${product.id}))">Add to Cart</button>
+                        </div>
+                    `;
+
+                    card.querySelector('.product-image').addEventListener('click', (e) => {
+                        if (!e.target.closest('button')) window.location.href = `product.html?id=${product.id}`;
+                    });
+                    card.querySelector('.product-info h3').addEventListener('click', () => {
+                        window.location.href = `product.html?id=${product.id}`;
+                    });
+
+                    grid.appendChild(card);
+                });
+            }
+
+            function filterProducts() {
+                let filtered = [...products];
+
+                // Price Filter
+                const maxPrice = parseFloat(priceRange.value);
+                filtered = filtered.filter(p => p.price <= maxPrice);
+
+                // Category Filter
+                const activeCategories = Array.from(categoryCheckboxes)
+                    .filter(cb => cb.checked && cb.id !== 'cat-all')
+                    .map(cb => cb.id.replace('cat-', ''));
+
+                if (activeCategories.length > 0) {
+                    filtered = filtered.filter(p => activeCategories.includes(p.category));
+                }
+
+                // Sort
+                const sortValue = sortSelect.value;
+                if (sortValue === 'price-low') {
+                    filtered.sort((a, b) => a.price - b.price);
+                } else if (sortValue === 'price-high') {
+                    filtered.sort((a, b) => b.price - a.price);
+                } else if (sortValue === 'new') {
+                    filtered = filtered.filter(p => p.isNew);
+                }
+
+                renderProducts(filtered);
+            }
+
+            // Event Listeners
+            priceRange.addEventListener('input', (e) => {
+                priceMaxDisplay.textContent = `$${e.target.value}`;
+                filterProducts();
+            });
+
+            sortSelect.addEventListener('change', filterProducts);
+
+            categoryCheckboxes.forEach(cb => {
+                cb.addEventListener('change', (e) => {
+                    if (e.target.id === 'cat-all' && e.target.checked) {
+                        categoryCheckboxes.forEach(c => {
+                            if (c.id !== 'cat-all') c.checked = false;
+                        });
+                    } else if (e.target.checked) {
+                        document.getElementById('cat-all').checked = false;
+                    }
+                    filterProducts();
+                });
+            });
+
+            // Check URL params for category
+            const urlParams = new URLSearchParams(window.location.search);
+            const catParam = urlParams.get('cat');
+            if (catParam) {
+                const cb = document.getElementById(`cat-${catParam}`);
+                if (cb) {
+                    document.getElementById('cat-all').checked = false;
+                    cb.checked = true;
+                }
+            }
+
+            // Initial Render
+            filterProducts();
+        });
+    </script>
+</body>
+
+</html>

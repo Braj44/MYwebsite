@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIBE CHECK | Gen-Z Streetwear</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    
+    <!-- Navigation -->
+    <header>
+        <div class="container nav-container">
+            <div class="logo">VIBE CHECK</div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="support.html">Support</a></li>
+                </ul>
+            </nav>
+            <div class="nav-icons">
+                <div class="icon-btn search-btn"><i class="fas fa-search"></i></div>
+                <a href="wishlist.html" class="icon-btn"><i class="far fa-heart"></i></a>
+                <a href="cart.html" class="icon-btn">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="badge cart-count">0</span>
+                </a>
+                <a href="login.html" class="icon-btn"><i class="far fa-user"></i></a>
+                <div class="mobile-menu-btn"><i class="fas fa-bars"></i></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="glitch-text" data-text="BE BOLD.">BE BOLD.</h1>
+            <h1 class="glitch-text" data-text="BE GEN-Z.">BE GEN-Z.</h1>
+            <p>Wear Your Vibe. The freshest streetwear drops are here.</p>
+            <div class="hero-btns">
+                <a href="shop.html" class="btn btn-primary">Shop Now</a>
+                <a href="shop.html?sort=new" class="btn btn-secondary">New Arrivals</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <!-- Placeholder for hero image, using a gradient/shape for now if no image -->
+            <div class="hero-shape"></div>
+        </div>
+    </section>
+
+    <!-- Marquee -->
+    <div class="marquee-container">
+        <div class="marquee-content">
+            <span>FREE SHIPPING ON ORDERS OVER $50</span>
+            <span>•</span>
+            <span>NEW DROPS EVERY FRIDAY</span>
+            <span>•</span>
+            <span>WORLDWIDE SHIPPING</span>
+            <span>•</span>
+            <span>STAY TOXIC</span>
+            <span>•</span>
+            <span>MAIN CHARACTER ENERGY</span>
+            <span>•</span>
+        </div>
+    </div>
+
+    <!-- Trending Collections -->
+    <section class="section container">
+        <h2 class="section-title">Trending Now</h2>
+        <div class="products-grid" id="trending-products">
+            <!-- Products injected via JS -->
+        </div>
+    </section>
+
+    <!-- Discount Banner -->
+    <section class="banner-section">
+        <div class="container banner-content">
+            <h2>FLAT 30% OFF</h2>
+            <p>ON YOUR FIRST ORDER. USE CODE: <strong>VIBE30</strong></p>
+            <a href="shop.html" class="btn btn-primary">GRAB IT</a>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="section container">
+        <h2 class="section-title">Shop By Vibe</h2>
+        <div class="categories-grid">
+            <a href="shop.html?cat=oversized" class="category-card">
+                <div class="cat-content">
+                    <h3>Oversized</h3>
+                </div>
+            </a>
+            <a href="shop.html?cat=anime" class="category-card">
+                <div class="cat-content">
+                    <h3>Anime</h3>
+                </div>
+            </a>
+            <a href="shop.html?cat=hiphop" class="category-card">
+                <div class="cat-content">
+                    <h3>Streetwear</h3>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section container">
+        <h2 class="section-title">The Hype</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p>"Literally the sickest tees I've ever bought. The quality is insane."</p>
+                <h4>@kai_cenat_fan</h4>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p>"No cap, this brand is valid. Shipping was fast too."</p>
+                <h4>@sarah_vibes</h4>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p>"Main character energy unlocked. 10/10 recommend."</p>
+                <h4>@josh_w</h4>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter-section">
+        <div class="container">
+            <h2>Don't Miss The Drop</h2>
+            <p>Join the community and get exclusive access.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email">
+                <button type="submit" class="btn btn-primary">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>VIBE CHECK</h4>
+                    <p>Redefining streetwear for the new generation. Stay iconic.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Shop</h4>
+                    <ul>
+                        <li><a href="shop.html">All Products</a></li>
+                        <li><a href="shop.html?cat=new">New Arrivals</a></li>
+                        <li><a href="shop.html?cat=best">Best Sellers</a></li>
+                        <li><a href="tracking.html">Track Order</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="support.html">FAQ</a></li>
+                        <li><a href="support.html">Contact Us</a></li>
+                        <li><a href="#">Shipping Policy</a></li>
+                        <li><a href="#">Returns</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 Vibe Check. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/products.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        // Homepage specific script
+        document.addEventListener('DOMContentLoaded', () => {
+            const grid = document.getElementById('trending-products');
+            // Show first 4 products as trending
+            const trending = products.slice(0, 4);
+            
+            trending.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.innerHTML = `
+                    <div class="product-image">
+                        <img src="${product.image}" alt="${product.name}">
+                        ${product.discount > 0 ? `<span class="discount-tag">-${product.discount}%</span>` : ''}
+                        <button class="wishlist-btn" onclick="toggleWishlist(${product.id})"><i class="far fa-heart"></i></button>
+                    </div>
+                    <div class="product-info">
+                        <h3>${product.name}</h3>
+                        <div class="price">
+                            <span class="current-price">$${product.price}</span>
+                            ${product.discount > 0 ? `<span class="old-price">$${(product.price * 1.2).toFixed(2)}</span>` : ''}
+                        </div>
+                        <div class="rating">
+                            ${'★'.repeat(Math.floor(product.rating))}${'☆'.repeat(5 - Math.floor(product.rating))}
+                        </div>
+                        <button class="btn btn-secondary btn-sm" onclick="addToCart(products.find(p => p.id === ${product.id}))">Add to Cart</button>
+                    </div>
+                `;
+                // Make the whole card clickable except buttons
+                card.querySelector('.product-image').addEventListener('click', (e) => {
+                    if(!e.target.closest('button')) window.location.href = `product.html?id=${product.id}`;
+                });
+                card.querySelector('.product-info h3').addEventListener('click', () => {
+                    window.location.href = `product.html?id=${product.id}`;
+                });
+                
+                grid.appendChild(card);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details | VIBE CHECK</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header>
+        <div class="container nav-container">
+            <div class="logo">VIBE CHECK</div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="shop.html" class="active">Shop</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="support.html">Support</a></li>
+                </ul>
+            </nav>
+            <div class="nav-icons">
+                <div class="icon-btn search-btn"><i class="fas fa-search"></i></div>
+                <a href="wishlist.html" class="icon-btn"><i class="far fa-heart"></i></a>
+                <a href="cart.html" class="icon-btn">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="badge cart-count">0</span>
+                </a>
+                <a href="login.html" class="icon-btn"><i class="far fa-user"></i></a>
+                <div class="mobile-menu-btn"><i class="fas fa-bars"></i></div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container product-details-container">
+        <div class="product-gallery">
+            <div class="main-image">
+                <img id="p-image" src="" alt="Product Image">
+            </div>
+            <div class="thumbnail-list">
+                <!-- Mock thumbnails -->
+                <img class="thumb active" src="" alt="Thumb 1" onclick="changeImage(this)">
+                <img class="thumb"
+                    src="https://images.unsplash.com/photo-1503342394128-c104d54dba01?auto=format&fit=crop&q=80&w=200"
+                    alt="Thumb 2" onclick="changeImage(this)">
+                <img class="thumb"
+                    src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&q=80&w=200"
+                    alt="Thumb 3" onclick="changeImage(this)">
+            </div>
+        </div>
+
+        <div class="product-info-panel">
+            <div class="breadcrumb">Shop / <span id="p-category">Category</span> / <span
+                    id="p-name-crumb">Product</span></div>
+            <h1 id="p-name">Product Name</h1>
+            <div class="p-rating">
+                <span id="p-stars">★★★★★</span>
+                <span class="review-count">(120 Reviews)</span>
+            </div>
+            <div class="p-price">
+                <span id="p-price" class="current-price">$0.00</span>
+                <span class="tax-note">Tax included.</span>
+            </div>
+
+            <p class="p-description">
+                Elevate your street style with this premium piece. Designed for the bold, crafted for comfort.
+                Features high-quality cotton blend, durable print, and an oversized fit that screams Gen-Z energy.
+            </p>
+
+            <div class="p-options">
+                <div class="option-group">
+                    <label>Size</label>
+                    <div class="size-selector">
+                        <div class="size-btn" onclick="selectSize(this)">S</div>
+                        <div class="size-btn active" onclick="selectSize(this)">M</div>
+                        <div class="size-btn" onclick="selectSize(this)">L</div>
+                        <div class="size-btn" onclick="selectSize(this)">XL</div>
+                        <div class="size-btn" onclick="selectSize(this)">XXL</div>
+                    </div>
+                </div>
+
+                <div class="option-group">
+                    <label>Color</label>
+                    <div class="color-selector">
+                        <div class="color-btn" style="background: #000;" onclick="selectColor(this)"></div>
+                        <div class="color-btn" style="background: #fff;" onclick="selectColor(this)"></div>
+                        <div class="color-btn" style="background: var(--neon-pink);" onclick="selectColor(this)"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-actions">
+                <button class="btn btn-primary" id="add-to-cart-btn">Add to Cart</button>
+                <button class="btn btn-secondary" id="buy-now-btn">Buy Now</button>
+                <button class="wishlist-btn-large"><i class="far fa-heart"></i></button>
+            </div>
+
+            <div class="p-meta">
+                <div class="meta-item"><i class="fas fa-truck"></i> Free Shipping over $50</div>
+                <div class="meta-item"><i class="fas fa-undo"></i> 30 Days Return</div>
+                <div class="meta-item"><i class="fas fa-shield-alt"></i> Secure Checkout</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Related Products -->
+    <section class="section container">
+        <h2 class="section-title">You Might Also Like</h2>
+        <div class="products-grid" id="related-products">
+            <!-- Injected via JS -->
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>VIBE CHECK</h4>
+                    <p>Redefining streetwear for the new generation. Stay iconic.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Shop</h4>
+                    <ul>
+                        <li><a href="shop.html">All Products</a></li>
+                        <li><a href="shop.html?cat=new">New Arrivals</a></li>
+                        <li><a href="shop.html?cat=best">Best Sellers</a></li>
+                        <li><a href="tracking.html">Track Order</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="support.html">FAQ</a></li>
+                        <li><a href="support.html">Contact Us</a></li>
+                        <li><a href="#">Shipping Policy</a></li>
+                        <li><a href="#">Returns</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 Vibe Check. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/products.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        let currentProduct = null;
+        let selectedSize = 'M';
+
+        function selectSize(btn) {
+            document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            selectedSize = btn.textContent;
+        }
+
+        function selectColor(btn) {
+            document.querySelectorAll('.color-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        }
+
+        function changeImage(thumb) {
+            document.getElementById('p-image').src = thumb.src;
+            document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+            thumb.classList.add('active');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = parseInt(urlParams.get('id'));
+
+            currentProduct = products.find(p => p.id === productId);
+
+            if (!currentProduct) {
+                window.location.href = 'shop.html'; // Redirect if invalid
+                return;
+            }
+
+            // Populate Data
+            document.getElementById('p-image').src = currentProduct.image;
+            document.querySelector('.thumb.active').src = currentProduct.image;
+            document.getElementById('p-name').textContent = currentProduct.name;
+            document.getElementById('p-name-crumb').textContent = currentProduct.name;
+            document.getElementById('p-category').textContent = currentProduct.category;
+            document.getElementById('p-price').textContent = `$${currentProduct.price}`;
+            document.getElementById('p-stars').textContent = '★'.repeat(Math.floor(currentProduct.rating)) + '☆'.repeat(5 - Math.floor(currentProduct.rating));
+
+            // Add to Cart Logic
+            document.getElementById('add-to-cart-btn').addEventListener('click', () => {
+                addToCart(currentProduct, selectedSize);
+            });
+
+            document.getElementById('buy-now-btn').addEventListener('click', () => {
+                addToCart(currentProduct, selectedSize);
+                window.location.href = 'checkout.html';
+            });
+
+            // Related Products
+            const relatedGrid = document.getElementById('related-products');
+            const related = products.filter(p => p.category === currentProduct.category && p.id !== currentProduct.id).slice(0, 4);
+
+            related.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.innerHTML = `
+                    <div class="product-image">
+                        <img src="${product.image}" alt="${product.name}">
+                    </div>
+                    <div class="product-info">
+                        <h3>${product.name}</h3>
+                        <div class="price">
+                            <span class="current-price">$${product.price}</span>
+                        </div>
+                    </div>
+                `;
+                card.addEventListener('click', () => window.location.href = `product.html?id=${product.id}`);
+                relatedGrid.appendChild(card);
+            });
+        });
+    </script>
+</body>
+
+</html>

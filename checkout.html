@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | VIBE CHECK</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="container nav-container">
+            <div class="logo">VIBE CHECK</div>
+            <a href="cart.html" class="btn btn-secondary btn-sm">Back to Cart</a>
+        </div>
+    </header>
+
+    <div class="container checkout-container">
+        <h1 class="page-title">Checkout</h1>
+
+        <form id="checkout-form" class="checkout-layout">
+            <div class="checkout-form">
+                <div class="form-section">
+                    <h3>Shipping Info</h3>
+                    <div class="form-row">
+                        <input type="text" placeholder="First Name" required>
+                        <input type="text" placeholder="Last Name" required>
+                    </div>
+                    <input type="email" placeholder="Email Address" required>
+                    <input type="text" placeholder="Address" required>
+                    <div class="form-row">
+                        <input type="text" placeholder="City" required>
+                        <input type="text" placeholder="Zip Code" required>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Payment</h3>
+                    <div class="payment-methods">
+                        <div class="payment-method selected">
+                            <i class="far fa-credit-card"></i> Card
+                        </div>
+                        <div class="payment-method">
+                            <i class="fab fa-paypal"></i> PayPal
+                        </div>
+                    </div>
+                    <input type="text" placeholder="Card Number" required>
+                    <div class="form-row">
+                        <input type="text" placeholder="MM/YY" required>
+                        <input type="text" placeholder="CVC" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cart-summary">
+                <h3>Order Summary</h3>
+                <div id="checkout-items">
+                    <!-- Injected Items -->
+                </div>
+                <div class="summary-row total">
+                    <span>Total</span>
+                    <span id="checkout-total">$0.00</span>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Place Order</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Order Success Modal -->
+    <div id="success-modal" class="modal">
+        <div class="modal-content">
+            <div class="success-icon"><i class="fas fa-check-circle"></i></div>
+            <h2>Order Placed!</h2>
+            <p>Your vibe is on the way. Order ID: #<span id="order-id"></span></p>
+            <a href="index.html" class="btn btn-primary">Back to Home</a>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkoutItems = document.getElementById('checkout-items');
+            const checkoutTotal = document.getElementById('checkout-total');
+            const form = document.getElementById('checkout-form');
+            const modal = document.getElementById('success-modal');
+
+            // Render Summary
+            let total = 0;
+            state.cart.forEach(item => {
+                total += item.price * item.quantity;
+                const div = document.createElement('div');
+                div.className = 'summary-item';
+                div.innerHTML = `
+                    <span>${item.name} x ${item.quantity}</span>
+                    <span>$${(item.price * item.quantity).toFixed(2)}</span>
+                `;
+                checkoutItems.appendChild(div);
+            });
+            checkoutTotal.textContent = `$${total.toFixed(2)}`;
+
+            // Handle Submit
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                // Simulate processing
+                const btn = form.querySelector('button[type="submit"]');
+                const originalText = btn.textContent;
+                btn.textContent = 'Processing...';
+                btn.disabled = true;
+
+                setTimeout(() => {
+                    // Success
+                    document.getElementById('order-id').textContent = Math.floor(Math.random() * 1000000);
+                    modal.style.display = 'flex';
+
+                    // Clear cart
+                    state.cart = [];
+                    saveState();
+                }, 2000);
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart | VIBE CHECK</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header>
+        <div class="container nav-container">
+            <div class="logo">VIBE CHECK</div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="support.html">Support</a></li>
+                </ul>
+            </nav>
+            <div class="nav-icons">
+                <div class="icon-btn search-btn"><i class="fas fa-search"></i></div>
+                <a href="wishlist.html" class="icon-btn"><i class="far fa-heart"></i></a>
+                <a href="cart.html" class="icon-btn active">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="badge cart-count">0</span>
+                </a>
+                <a href="login.html" class="icon-btn"><i class="far fa-user"></i></a>
+                <div class="mobile-menu-btn"><i class="fas fa-bars"></i></div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container cart-container">
+        <h1 class="page-title">Your Cart</h1>
+
+        <div class="cart-layout">
+            <div class="cart-items" id="cart-items">
+                <!-- Injected via JS -->
+                <p>Your cart is empty. <a href="shop.html">Go shopping</a>.</p>
+            </div>
+
+            <div class="cart-summary">
+                <h3>Order Summary</h3>
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span id="subtotal">$0.00</span>
+                </div>
+                <div class="summary-row">
+                    <span>Shipping</span>
+                    <span id="shipping">Calculated at checkout</span>
+                </div>
+                <div class="summary-row total">
+                    <span>Total</span>
+                    <span id="total">$0.00</span>
+                </div>
+
+                <div class="promo-code">
+                    <input type="text" placeholder="Promo Code">
+                    <button class="btn btn-secondary">Apply</button>
+                </div>
+
+                <a href="checkout.html" class="btn btn-primary btn-block">Proceed to Checkout</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>VIBE CHECK</h4>
+                    <p>Redefining streetwear for the new generation. Stay iconic.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Shop</h4>
+                    <ul>
+                        <li><a href="shop.html">All Products</a></li>
+                        <li><a href="shop.html?cat=new">New Arrivals</a></li>
+                        <li><a href="shop.html?cat=best">Best Sellers</a></li>
+                        <li><a href="tracking.html">Track Order</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="support.html">FAQ</a></li>
+                        <li><a href="support.html">Contact Us</a></li>
+                        <li><a href="#">Shipping Policy</a></li>
+                        <li><a href="#">Returns</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 Vibe Check. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/products.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cartItemsContainer = document.getElementById('cart-items');
+            const subtotalEl = document.getElementById('subtotal');
+            const totalEl = document.getElementById('total');
+
+            function renderCart() {
+                if (state.cart.length === 0) {
+                    cartItemsContainer.innerHTML = '<p>Your cart is empty. <a href="shop.html">Go shopping</a>.</p>';
+                    subtotalEl.textContent = '$0.00';
+                    totalEl.textContent = '$0.00';
+                    return;
+                }
+
+                cartItemsContainer.innerHTML = '';
+                let subtotal = 0;
+
+                state.cart.forEach(item => {
+                    const itemTotal = item.price * item.quantity;
+                    subtotal += itemTotal;
+
+                    const itemEl = document.createElement('div');
+                    itemEl.className = 'cart-item';
+                    itemEl.innerHTML = `
+                        <div class="cart-item-image">
+                            <img src="${item.image}" alt="${item.name}">
+                        </div>
+                        <div class="cart-item-info">
+                            <h3>${item.name}</h3>
+                            <p>Size: ${item.size}</p>
+                            <p class="cart-item-price">$${item.price}</p>
+                        </div>
+                        <div class="cart-item-actions">
+                            <div class="quantity-controls">
+                                <button onclick="updateQuantity(${item.id}, '${item.size}', -1)">-</button>
+                                <span>${item.quantity}</span>
+                                <button onclick="updateQuantity(${item.id}, '${item.size}', 1)">+</button>
+                            </div>
+                            <button class="remove-btn" onclick="removeItem(${item.id}, '${item.size}')"><i class="fas fa-trash"></i></button>
+                        </div>
+                    `;
+                    cartItemsContainer.appendChild(itemEl);
+                });
+
+                subtotalEl.textContent = `$${subtotal.toFixed(2)}`;
+                totalEl.textContent = `$${subtotal.toFixed(2)}`;
+            }
+
+            window.updateQuantity = (id, size, change) => {
+                const item = state.cart.find(i => i.id === id && i.size === size);
+                if (item) {
+                    item.quantity += change;
+                    if (item.quantity <= 0) {
+                        removeFromCart(id, size);
+                    } else {
+                        saveState();
+                        updateCartCount();
+                    }
+                    renderCart();
+                }
+            };
+
+            window.removeItem = (id, size) => {
+                removeFromCart(id, size);
+                renderCart();
+            };
+
+            renderCart();
+        });
+    </script>
+</body>
+
+</html>
